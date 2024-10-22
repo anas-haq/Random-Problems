@@ -27,7 +27,7 @@ int main() {
         b.push_back(a[0]);
         for (ll i = 1; i <n; i++)
         {
-            if(a[i]<b.back());
+            if(a[i]<b.back())
             {
                 b.push_back(a[i]);
             }
