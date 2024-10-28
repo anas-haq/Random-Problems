@@ -21,78 +21,43 @@ int main()
     {
         ll n;
         cin >> n;
-        vector<ll> v, v1;
-        ll x = 1;
-        for (ll i = 0; i < n; i++)
+        if (n & 1)
         {
-            ll b = (1 << i);
-            if (b > n)
+            cout << n << '\n';
+            cout << "2 1 ";
+            for (ll i = 3; i <= n; i++)
+                cout << i << " ";
+            cout << '\n';
+            return;
+        }
+        ll res, ans = 3, i = 1;
+        while (true)
+        {
+            res = (1LL << i);
+            res--;
+            if (res > n)
                 break;
-            x = b;
+            ans = res;
+            i++;
         }
-        v.push_back(2);
-        v.push_back(1);
-        v.push_back(3);
-        for (ll i = 4; i <= n; i++)
+        cout << (1LL << i) - 1 << '\n';
+        if ((ans + 1) == n)
         {
-            if (i & 1)
-            {
-                v.push_back(i);
-            }
-            else
-            {
-                v.push_back(i);
-            }
-        }
-        v1 = v;
-        for (ll i = 0; i < n; i++)
-        {
-            if (v1[i] == x - 1)
-            {
-                swap(v1[i], v1[n - 1]);
-                break;
-            }
-        }
-        ll k = 0, k1 = 0;
-        for (ll i = 1; i <= n; i++)
-        {
-            if (i & 1)
-            {
-                k = k & v[i - 1];
-            }
-            else
-            {
-                k = k | v[i - 1];
-            }
-        }
-        for (ll i = 1; i <= n; i++)
-        {
-            if (i & 1)
-            {
-                k1 = k1 & v1[i - 1];
-            }
-            else
-            {
-                k1 = k1 | v1[i - 1];
-            }
-        }
-        cout << max(k, k1) << endl;
-        if (k > k1)
-        {
-            for (ll i = 0; i < n; i++)
-            {
-                cout << v[i] << " ";
-            }
+            cout << "2 1 ";
+            for (ll i = 3; i <= n; i++)
+                cout << i << " ";
+            cout << '\n';
         }
         else
         {
-            for (ll i = 0; i < n; i++)
+            for (ll i = 1; i <= n - 2; i++)
             {
-                cout << v1[i] << " ";
+                if (i == ans)
+                    continue;
+                cout << i << " ";
             }
+            cout << n - 1 << " " << n << " " << ans << '\n';
         }
-
-        cout << "\n";
     };
 
     while (t--)
