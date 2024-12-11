@@ -16,44 +16,26 @@ int main()
 
     ll test = 1;
     // cin >> test;
-    auto isPrime = [&](ll n)
-    {
-        ll total_div = 0;
-        for (ll i = 1; i <= n; i++)
-        {
-            if (n % i == 0)
-            {
-                total_div++;
-            }
-        }
-        if (total_div == 2)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    };
+
     auto alMostPrime = [&](ll n)
     {
-        ll ans = 0;
-        for (ll i = 1; i <= n; i++)
+        set<ll> s;
+        for (ll i = 2; i * i <= n; i++)
         {
             if (n % i == 0)
             {
-                if (isPrime(i))
+                while (n % i == 0)
                 {
-                    ans++;
+                    s.insert(i);
+                    n /= i;
                 }
             }
         }
-        if (ans == 2)
+        if (n > 1)
         {
-            return true;
+            s.insert(n);
         }
-        else
-            return false;
+        return s.size()==2;
     };
     auto Anas = [&]()
     {
