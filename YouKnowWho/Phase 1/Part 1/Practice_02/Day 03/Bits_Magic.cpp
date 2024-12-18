@@ -9,10 +9,6 @@ using namespace std;
 
 using ll = long long;
 
-bool kth_bit_set(int n, int k){
-    return (n<<k)&1;
-}
-
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(NULL);
